@@ -249,9 +249,19 @@ import {
   Button,
 } from "@nextui-org/react";
 import { Input } from "@nextui-org/react";
+import { Slider } from "@nextui-org/react";
+import { Checkbox } from "@nextui-org/react";
+import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { LocalizationProvider } from "@mui/x-date-pickers-pro";
+import { AdapterDayjs } from "@mui/x-date-pickers-pro/AdapterDayjs";
+import { DateRangePicker } from "@mui/x-date-pickers-pro/DateRangePicker";
+
+import React from "react";
 
 function Results() {
   const state = useLocation();
+  const [citySearch, setCitySearch] = React.useState("");
   const types = state.state.selectedValue
     .split(",")
     .map((value: string, index: number) => <li key={index}>{value.trim()}</li>);
@@ -266,11 +276,78 @@ function Results() {
             style={{ height: "15px" }}
           ></i>
         </div>
-        <p>{state.state.stringSearch}</p>
-        <p>{state.state.citySearch}</p>
-        <p>{state.state.startDateSearch}</p>
-        <p>{state.state.endDateSearch}</p>
-        <p>{types}</p>
+        <Autocomplete
+          placeholder="Location: "
+          className="max-w-xs"
+          value={citySearch}
+          onInputChange={(city) => setCitySearch(String(city))}
+        >
+          <AutocompleteItem key="Chicago">Chicago</AutocompleteItem>
+          <AutocompleteItem key="Dallas">Dallas</AutocompleteItem>
+          <AutocompleteItem key="Los Angeles">Los Angeles</AutocompleteItem>
+          <AutocompleteItem key="Miami">Miami</AutocompleteItem>
+          <AutocompleteItem key="New York">New York</AutocompleteItem>
+        </Autocomplete>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DemoContainer components={["DateRangePicker"]}>
+            <DateRangePicker
+              localeText={{ start: "Start Date", end: "End Date" }}
+            />
+          </DemoContainer>
+        </LocalizationProvider>
+        <Slider
+          label="Price"
+          color="foreground"
+          size="sm"
+          step={20}
+          hideValue={true}
+          marks={[
+            {
+              value: 0,
+              label: "Free",
+            },
+            {
+              value: 20,
+              label: "$",
+            },
+            {
+              value: 40,
+              label: "$$",
+            },
+            {
+              value: 60,
+              label: "$$$",
+            },
+            {
+              value: 80,
+              label: "$$$$",
+            },
+          ]}
+          defaultValue={20}
+          maxValue={80}
+          className="max-w-md w-4/5 mx-auto"
+        />
+
+        <Slider
+          label="Distance (mi)"
+          color="foreground"
+          size="sm"
+          step={1}
+          maxValue={999}
+          minValue={0}
+          defaultValue={0}
+          className="max-w-md w-4/5 mx-auto mt-16"
+        />
+
+        <div className="flex flex-col items-left p-10">
+          Type:<br></br>
+          <Checkbox defaultSelected>Art</Checkbox>
+          <Checkbox defaultSelected>Food</Checkbox>
+          <Checkbox defaultSelected>Music</Checkbox>
+          <Checkbox defaultSelected>Sport</Checkbox>
+          <Checkbox defaultSelected>Seasonal</Checkbox>
+          <Checkbox defaultSelected>On a Budget</Checkbox>
+        </div>
       </div>
 
       <h4 className="title-with-sidenav" id="results-header">
@@ -287,7 +364,7 @@ function Results() {
         ))}
       </div>
 
-      <div id="Sort">
+      <div id="Sort" className="flex justify-end">
         <Dropdown>
           <DropdownTrigger>
             <Button>Sort</Button>

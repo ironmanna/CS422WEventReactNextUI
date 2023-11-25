@@ -14,6 +14,10 @@ import { Input } from "@nextui-org/react";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { SearchType } from "../types/types";
 import { useNavigate } from "react-router-dom";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { LocalizationProvider } from "@mui/x-date-pickers-pro";
+import { AdapterDayjs } from "@mui/x-date-pickers-pro/AdapterDayjs";
+import { DateRangePicker } from "@mui/x-date-pickers-pro/DateRangePicker";
 
 function SearchCard() {
   const [stringSearch, setStringSearch] = React.useState("");
@@ -69,10 +73,10 @@ function SearchCard() {
                         setStringSearch(event.currentTarget.value)
                       }
                     />
-                    <div className="filters">
+                    <div className="filters space-x-2">
                       <Autocomplete
                         placeholder="Location: "
-                        className="max-w-xs"
+                        className="max-w-xs py-2"
                         value={citySearch}
                         onInputChange={(city) => setCitySearch(String(city))}
                       >
@@ -89,20 +93,16 @@ function SearchCard() {
                         </AutocompleteItem>
                       </Autocomplete>
 
-                      <div id="dates">
-                        <label>Start Date</label>
-                        <input
-                          type="date"
-                          id="startDate"
-                          onChange={(e) => setStartDateSearch(e.target.value)}
-                        />
-                        <label>End Date</label>
-                        <input
-                          type="date"
-                          id="endDate"
-                          onChange={(e) => setEndDateSearch(e.target.value)}
-                        />
-                      </div>
+                      <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <DemoContainer components={["DateRangePicker"]}>
+                          <DateRangePicker
+                            localeText={{
+                              start: "Start Date",
+                              end: "End Date",
+                            }}
+                          />
+                        </DemoContainer>
+                      </LocalizationProvider>
 
                       <div id="types">
                         <Dropdown>
