@@ -1,0 +1,219 @@
+[
+    {
+      "id": 1,
+      "img": "images/cupcakes.jpg",
+      "name": "Cupcake Day Festival",
+      "date": "2023-11-25",
+      "location": "Wacker Drive, Chicago, IL",
+      "price": "free",
+      "types": ["Popular", "Food"]
+    },
+    {
+      "id": 2,
+      "img": "images/fulton.jpg",
+      "name": "Fulton Market Food Festival",
+      "date": "2023-11-1",
+      "location": "Fulton & Morgan St, Chicago, IL",
+      "price": "free",
+      "types": ["Budget", "Popular", "Food"]
+    },
+    {
+      "id": 3,
+      "img": "images/beer.jpg",
+      "name": "The Festival of Wood and Barrel Aged Beer",
+      "date": "2023-11-1",
+      "location": "Michigan Avenue, Chicago, IL",
+      "price": "$-$$",
+      "types": ["Popular", "Food"]
+    },
+    {
+      "id": 4,
+      "img": "images/christmas.jpg",
+      "name": "Christmas Market",
+      "date": "2023-11-10",
+      "location": "State Street, Chicago, IL",
+      "price": "$",
+      "types": ["Budget", "Popular", "Seasonal", "Food", "Art"]
+    },
+    {
+      "id": 5,
+      "img": "images/sushi.jpg",
+      "name": "Sushi and Sashimi Food festival",
+      "date": "2023-11-18",
+      "location": "Lake Shore Drive, Chicago, IL",
+      "price": "$$-$$$",
+      "types": ["Popular", "Food"]
+    },
+    {
+      "id": 6,
+      "img": "images/rock.jpg",
+      "name": "Rock Under the Stars Festival",
+      "date": "2023-11-15",
+      "location": "LaSalle Street, Chicago, IL",
+      "price": "$",
+      "types": ["Budget","Music"]
+    },
+    {
+      "id": 7,
+      "img": "images/foodart.jpg",
+      "name": "International Food and Art Extravaganza",
+      "date": "2023-11-20",
+      "location": "Randolph Street, Chicago, IL",
+      "price": "$$",
+      "types": ["Popular","Food","Art"]
+    },
+    {
+      "id": 8,
+      "img": "images/wonderland.jpg",
+      "name": "Winter Wonderland Gala",
+      "date": "2023-12-10",
+      "location": "Division Street, Chicago, IL",
+      "price": "$$$$",
+      "types": ["Seasonal"]
+    },
+    {
+        "id": 9,
+        "img": "images/chimarathon.jpg",
+        "name": "City Marathon",
+        "date": "2023-12-15",
+        "location": "Downtown Chicago, IL",
+        "price": "$$",
+        "types": ["Sport"]
+      },
+      {
+        "id": 10,
+        "img": "images/artshow.jpg",
+        "name": "Art in the Park",
+        "date": "2023-11-8",
+        "location": "Bayfront Park, Miami, FL",
+        "price": "free",
+        "types": ["Art", "Budget"]
+      },
+      {
+        "id": 11,
+        "img": "images/beachconcert.jpg",
+        "name": "Beach Concert Series",
+        "date": "2023-11-12",
+        "location": "Santa Monica Beach, Los Angeles, CA",
+        "price": "$$$",
+        "types": ["Music", "Popular"]
+      },
+      {
+        "id": 12,
+        "img": "images/tacofestival.jpg",
+        "name": "Taco Festival",
+        "date": "2023-11-5",
+        "location": "Central Park, New York, NY",
+        "price": "$",
+        "types": ["Food", "Budget", "Popular"]
+      },
+      {
+        "id": 13,
+        "img": "images/basketball.jpg",
+        "name": "Basketball Championship",
+        "date": "2023-12-1",
+        "location": "American Airlines Center, Dallas, TX",
+        "price": "$$$",
+        "types": ["Sport"]
+      },
+      {
+        "id": 14,
+        "img": "images/artsymiami.jpg",
+        "name": "Artsy Miami Festival",
+        "date": "2023-11-14",
+        "location": "Wynwood Walls, Miami, FL",
+        "price": "$",
+        "types": ["Art", "Music", "Budget"]
+      },
+      {
+        "id": 15,
+        "img": "images/hollywoodparty.jpg",
+        "name": "Hollywood Party Night",
+        "date": "2023-11-8",
+        "location": "Hollywood Blvd, Los Angeles, CA",
+        "price": "$$$",
+        "types": ["Music", "Popular"]
+      },
+      {
+        "id": 16,
+        "img": "images/broadway.jpg",
+        "name": "Broadway Extravaganza",
+        "date": "2023-11-12",
+        "location": "Times Square, New York, NY",
+        "price": "$$$",
+        "types": ["Music", "Popular"]
+      },
+      {
+        "id": 17,
+        "img": "images/bbqfest.jpg",
+        "name": "BBQ Fest",
+        "date": "2023-12-5",
+        "location": "Deep Ellum, Dallas, TX",
+        "price": "$",
+        "types": ["Food", "Budget"]
+      },
+      {
+        "id": 18,
+        "img": "images/sportsshowdown.jpg",
+        "name": "Sports Showdown",
+        "date": "2023-12-18",
+        "location": "AT&T Stadium, Dallas, TX",
+        "price": "$$$",
+        "types": ["Sport"]
+      },
+      {
+        "id": 19,
+        "img": "images/beachartfest.jpg",
+        "name": "Beach Art Festival",
+        "date": "2023-11-20",
+        "location": "Miami Beach, Miami, FL",
+        "price": "free",
+        "types": ["Art", "Popular", "Budget"]
+      },
+      {
+        "id": 20,
+        "img": "images/jazznight.jpg",
+        "name": "Jazz Night Out",
+        "date": "2023-11-28",
+        "location": "Downtown Los Angeles, CA",
+        "price": "$$$",
+        "types": ["Music", "Popular"]
+      },
+      {
+        "id": 21,
+        "img": "images/nycmarathon.jpg",
+        "name": "NYC Marathon",
+        "date": "2023-11-5",
+        "location": "New York City, NY",
+        "price": "$$",
+        "types": ["Sports", "Popular"]
+      },
+      {
+        "id": 22,
+        "img": "images/miamiseasonal.jpg",
+        "name": "Miami Winter Wonderland",
+        "date": "2023-12-5",
+        "location": "Downtown Miami, FL",
+        "price": "free",
+        "types": ["Seasonal", "Popular", "Budget", "Food"]
+      },
+      {
+        "id": 23,
+        "img": "images/laseasonal.jpg",
+        "name": "Festive Lights Festival",
+        "date": "2023-12-15",
+        "location": "Griffith Observatory, Los Angeles, CA",
+        "price": "$",
+        "types": ["Seasonal", "Popular", "Budget"]
+      },
+      {
+        "id": 24,
+        "img": "images/nyseasonal.jpg",
+        "name": "Snowy Central Park Celebration",
+        "date": "2023-12-10",
+        "location": "Central Park, New York, NY",
+        "price": "$$",
+        "types": ["Seasonal", "Popular"]
+      }
+  ]
+  
