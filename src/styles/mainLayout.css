@@ -1,0 +1,407 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*Top header of the website*/
+body {
+  font-family: "ABeeZee", sans-serif !important;
+}
+
+header {
+  background-color: #e5bdd0;
+  padding: 20px 10px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  font-family: "ABeeZee", sans-serif !important;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: large;
+  margin-left: 30px;
+}
+
+.top-header ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.top-header ul li {
+  margin-right: 20px;
+}
+
+.header-link {
+  text-decoration: none;
+  color: #000;
+}
+
+.header-link:hover {
+  text-decoration: none;
+  color: #426c55;
+}
+
+.dropdown .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #f1f1f1;
+  z-index: 2;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu-option {
+  margin: 10px 10px 15px;
+}
+
+.user-icon {
+  margin-right: 30px;
+}
+
+.title-with-sidenav,
+.events-with-sidenav {
+  margin-left: 300px;
+  padding: 0px 10px;
+  margin-top: 67px;
+}
+
+/* Fixed sidenav, full height */
+.sidenav {
+  height: 100%;
+  width: 300px;
+  position: fixed;
+  z-index: 0;
+  top: 69px;
+  left: 0;
+  background-color: #f1f1f1;
+  overflow-x: hidden;
+  padding-top: 20px;
+  border: solid 1px;
+}
+
+/* Style the sidenav links and the dropdown button */
+.sidenav a,
+.dropdown-btn {
+  padding: 6px 8px 4px 14px;
+  text-decoration: none;
+  font-size: 14px;
+  color: #818181;
+  display: block;
+
+  background: none;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  padding-right: none;
+  padding-left: 2px;
+}
+
+/* On mouse-over */
+.sidenav a:hover,
+.dropdown-btn:hover {
+  color: red;
+}
+
+.search-container {
+  margin-top: none;
+  margin-bottom: none;
+  padding-top: none;
+  padding-bottom: none;
+  padding-left: 20px;
+}
+
+/* Add an active class to the active dropdown button */
+.active {
+  background-color: lightgrey;
+  color: white;
+}
+
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.dropdown-container {
+  display: none;
+  background-color: #f1f1f1;
+  padding-left: 8px;
+}
+
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+  float: right;
+  padding-right: 8px;
+}
+
+.search-container button {
+  padding-right: 4px 8px;
+  cursor: pointer;
+  border: none;
+}
+
+/* Some media queries for responsiveness */
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
+}
+
+#ui-datepicker-div {
+  font-size: 12px;
+  border: solid 1px;
+}
+
+.ui-datepicker {
+  font-size: 17px;
+  border: solid 1px;
+}
+
+.ui-datepicker td {
+  padding-right: 2px;
+  height: 4px;
+  width: 7px;
+}
+
+.ui-datepicker-calendar .ui-state-default {
+  width: 28px;
+  height: 21px;
+  text-align: center;
+  font-size: 12px;
+  padding-left: 9px;
+  padding-right: 2px;
+  border: solid 1px;
+}
+
+.ui-datepicker-header .ui-datepicker-prev,
+.ui-datepicker-header .ui-datepicker-next {
+  width: 20px;
+  height: 20px;
+}
+
+/* search cards */
+.sort-btn {
+  float: right;
+  top: 75px;
+  margin-right: 35px;
+  text-align: center;
+}
+
+.sort-btn-container {
+  display: none;
+  background-color: #f1f1f1;
+  float: right;
+  top: 75px;
+  margin-right: 35px;
+  text-align: center;
+  border: solid 1px;
+}
+
+.event-listing {
+  border: 1px solid #e5bdd0;
+  /*margin: 10px;
+    padding: 10px;*/
+  display: flex;
+  background-color: #f7f7f7;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 170px;
+  border-radius: 25px;
+}
+
+.event-image {
+  flex: 1;
+  height: 160px;
+  width: 160px;
+  overflow: hidden;
+  border-radius: 25px;
+}
+
+.event-image img {
+  width: 100%;
+  height: auto;
+}
+
+.event-details {
+  flex: 3;
+  padding: 0 20px;
+}
+
+.event-details h2 {
+  font-size: 20px;
+  margin-top: 0;
+}
+
+.event-details p {
+  font-size: 12px;
+  margin: 5px 0;
+}
+
+.save-button {
+  margin-right: 10px;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; /* Adjust the size as needed */
+  height: 40px; /* Adjust the size as needed */
+  border-radius: 50%; /* Makes the button round */
+}
+
+.full-heart::before {
+  content: "\2665"; /* A solid heart character */
+}
+
+/*Search card*/
+
+.filters {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card {
+  width: 60%;
+  margin-top: 70px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  align-self: center;
+  border-color: #558b6e;
+  border-width: 5px;
+  border-radius: 20px;
+}
+
+.card-body {
+  width: 80%;
+}
+
+.card-title {
+  font-family: "Signika", sans-serif;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.parent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-container {
+  justify-content: flex-end;
+  margin-bottom: 30px;
+}
+
+.dropdown-item-location {
+  width: 100%;
+  text-align: left;
+}
+
+.checkbox-dropdown {
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+#searchBar {
+  width: 100%;
+  margin: 0 0 10px 0;
+}
+
+#daterange {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+#dropdownMenu2 {
+  width: 100%;
+  background-color: #426c55;
+}
+
+#dropdownMenu1 {
+  width: 130px;
+  background-color: #426c55;
+}
+
+/*Liked events*/
+.liked-header {
+  margin-top: 70px;
+  margin-bottom: 10px;
+}
+
+/*Results*/
+#results-header {
+  margin-top: 100px;
+}
+
+#buttonSearch {
+  background-color: #558b6e;
+  border-color: #558b6e;
+}
+
+#buttonSearch:hover {
+  background-color: #426c55;
+  border-color: #426c55;
+}
+
+#dates {
+  margin-left: 5px;
+  margin-right: 5px;
+  padding-top: 15px;
+}
+
+#types {
+  padding-top: 15px;
+}
+
+.searchCard {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-top: 70px;
+  padding-top: 20px;
+  height: 700px;
+}
+
+.imageContainer {
+  overflow: hidden;
+}
+
+#eventImage {
+  position: absolute;
+  overflow: hidden;
+  max-width: 90%;
+  top: 100px;
+  left: 5%;
+  z-index: -1;
+}
+
+.search-button {
+  margin-top: 70px;
+  margin-bottom: 10px;
+}
+
+.event-details {
+  text-align: left !important;
+}
+
+.event-image-details #eventImage {
+  margin-top: 220px !important;
+  max-height: 600px !important;
+}
+
+#eventDescription {
+  margin-top: 660px;
+  margin-bottom: 20px;
+}
