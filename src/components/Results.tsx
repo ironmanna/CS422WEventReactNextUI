@@ -78,11 +78,38 @@ function Results() {
     dayjs(),
     dayjs().add(1, "day"),
   ]);
+  const [priceMax, setPriceMax] = React.useState(80);
+  const [distanceMax, setDistanceMax] = React.useState(999);
   let dateValid = false;
   const navigate = useNavigate();
 
+  const getPriceTranslated = (price: string) => {
+    switch (price) {
+      case "Free":
+        return 0;
+      case "$":
+        return 20;
+      case "$-$$":
+        return 30;
+      case "$$":
+        return 40;
+      case "$$-$$$":
+        return 50;
+      case "$$$":
+        return 60;
+      case "$$$-$$$$":
+        return 70;
+      case "$$$$":
+        return 80;
+      default:
+        return 0;
+    }
+  };
+
   const filterEvents = () => {
     let types = [...selectedKeys];
+    console.log(priceMax);
+    console.log(distanceMax);
     let filtered = events.filter((event) => {
       if (event.location.includes(citySearch)) {
         if (event.name.includes(stringSearch)) {
@@ -101,9 +128,42 @@ function Results() {
                 });
                 console.log("found " + found);
                 console.log(event.types + " instead of " + selectedKeys);
-                return found;
+
+                if (found) {
+                  let price = getPriceTranslated(event.price);
+                  console.log("Event price: ", price);
+                  if (event.distance <= distanceMax) {
+                    if (event.price == "Free") {
+                      return true;
+                    } else {
+                      if (price <= priceMax) {
+                        return true;
+                      } else {
+                        return false;
+                      }
+                    }
+                  } else {
+                    return false;
+                  }
+                } else {
+                  return false;
+                }
               } else {
-                return true;
+                let price = getPriceTranslated(event.price);
+                console.log("Event price: ", price);
+                if (event.distance <= distanceMax) {
+                  if (event.price == "Free") {
+                    return true;
+                  } else {
+                    if (price <= priceMax) {
+                      return true;
+                    } else {
+                      return false;
+                    }
+                  }
+                } else {
+                  return false;
+                }
               }
             } else {
               console.log("1");
@@ -121,9 +181,41 @@ function Results() {
               });
               console.log("found2 " + found);
               console.log(event.types + " instead of " + selectedKeys);
-              return found;
+              if (found) {
+                let price = getPriceTranslated(event.price);
+                console.log("Event price: ", price);
+                if (event.distance <= distanceMax) {
+                  if (event.price == "Free") {
+                    return true;
+                  } else {
+                    if (price <= priceMax) {
+                      return true;
+                    } else {
+                      return false;
+                    }
+                  }
+                } else {
+                  return false;
+                }
+              } else {
+                return false;
+              }
             } else {
-              return true;
+              let price = getPriceTranslated(event.price);
+              console.log("Event price: ", price);
+              if (event.distance <= distanceMax) {
+                if (event.price == "Free") {
+                  return true;
+                } else {
+                  if (price <= priceMax) {
+                    return true;
+                  } else {
+                    return false;
+                  }
+                }
+              } else {
+                return false;
+              }
             }
           }
         } else {
@@ -212,7 +304,15 @@ function Results() {
 
   useEffect(() => {
     filterEvents();
-  }, [citySearch, stringSearch, startDateSearch, endDateSearch, selectedKeys]);
+  }, [
+    citySearch,
+    stringSearch,
+    startDateSearch,
+    endDateSearch,
+    selectedKeys,
+    priceMax,
+    distanceMax,
+  ]);
 
   const getNameImage = (index: number) => {
     switch (index) {
@@ -423,6 +523,12 @@ function Results() {
           defaultValue={20}
           maxValue={80}
           className="max-w-md w-4/5 mx-auto"
+          value={priceMax}
+          onChange={(value) => {
+            if (typeof value === "number") {
+              setPriceMax(value);
+            }
+          }}
         />
 
         <Slider
@@ -434,6 +540,12 @@ function Results() {
           minValue={0}
           defaultValue={0}
           className="max-w-md w-4/5 mx-auto mt-16"
+          value={distanceMax}
+          onChange={(value) => {
+            if (typeof value === "number") {
+              setDistanceMax(value);
+            }
+          }}
         />
 
         <div className="flex flex-col items-left p-10">
