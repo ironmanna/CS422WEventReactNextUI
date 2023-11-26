@@ -7,7 +7,8 @@
     "location": "Wacker Drive, Chicago, IL",
     "price": "free",
     "types": ["Popular", "Food"],
-    "distance": 5
+    "distance": 5,
+    "description": "Indulge in a delightful array of cupcakes from various vendors at the Cupcake Day Festival on Wacker Drive in Chicago. A sweet celebration for food enthusiasts!"
   },
   {
     "id": 2,
@@ -17,7 +18,8 @@
     "location": "Fulton & Morgan St, Chicago, IL",
     "price": "free",
     "types": ["Budget", "Popular", "Food"],
-    "distance": 10
+    "distance": 10,
+    "description": "Experience the diverse culinary offerings at the Fulton Market Food Festival in Chicago. A budget-friendly food extravaganza featuring popular local vendors."
   },
   {
     "id": 3,
@@ -27,7 +29,8 @@
     "location": "Michigan Avenue, Chicago, IL",
     "price": "$-$$",
     "types": ["Popular", "Food"],
-    "distance": 8
+    "distance": 8,
+    "description": "Savor the rich flavors of wood and barrel-aged beers at this popular festival on Michigan Avenue in Chicago. A must-attend event for beer enthusiasts!"
   },
   {
     "id": 4,
@@ -37,7 +40,8 @@
     "location": "State Street, Chicago, IL",
     "price": "$",
     "types": ["Budget", "Popular", "Seasonal", "Food", "Art"],
-    "distance": 3
+    "distance": 3,
+    "description": "Immerse yourself in the festive spirit at the Christmas Market on State Street in Chicago. Explore budget-friendly seasonal delights, food, and art."
   },
   {
     "id": 5,
@@ -47,7 +51,8 @@
     "location": "Lake Shore Drive, Chicago, IL",
     "price": "$$-$$$",
     "types": ["Popular", "Food"],
-    "distance": 7
+    "distance": 7,
+    "description": "Embark on a culinary journey of exquisite sushi and sashimi at the Food Festival on Lake Shore Drive in Chicago. A treat for sushi lovers!"
   },
   {
     "id": 6,
@@ -57,7 +62,8 @@
     "location": "LaSalle Street, Chicago, IL",
     "price": "$",
     "types": ["Budget", "Music"],
-    "distance": 12
+    "distance": 12,
+    "description": "Enjoy a night of rocking music under the stars at LaSalle Street in Chicago. A budget-friendly festival for music enthusiasts!"
   },
   {
     "id": 7,
@@ -67,7 +73,8 @@
     "location": "Randolph Street, Chicago, IL",
     "price": "$$",
     "types": ["Popular", "Food", "Art"],
-    "distance": 9
+    "distance": 9,
+    "description": "Experience a fusion of international cuisines and art at the Extravaganza on Randolph Street in Chicago. A delightful blend of flavors and creativity!"
   },
   {
     "id": 8,
@@ -77,7 +84,8 @@
     "location": "Division Street, Chicago, IL",
     "price": "$$$$",
     "types": ["Seasonal"],
-    "distance": 6
+    "distance": 6,
+    "description": "Step into a magical Winter Wonderland at the Gala on Division Street in Chicago. An opulent seasonal celebration filled with enchanting experiences!"
   },
   {
     "id": 9,
@@ -87,7 +95,8 @@
     "location": "Downtown Chicago, IL",
     "price": "$$",
     "types": ["Sport"],
-    "distance": 4
+    "distance": 4,
+    "description": "Join the City Marathon and challenge yourself in the heart of Downtown Chicago. A thrilling sports event for fitness enthusiasts!"
   },
   {
     "id": 10,
@@ -97,7 +106,8 @@
     "location": "Bayfront Park, Miami, FL",
     "price": "free",
     "types": ["Art", "Budget"],
-    "distance": 11
+    "distance": 11,
+    "description": "Explore a vibrant display of art at the Art in the Park event in Bayfront Park, Miami. A free and budget-friendly artistic extravaganza!"
   },
   {
     "id": 11,
@@ -107,7 +117,8 @@
     "location": "Santa Monica Beach, Los Angeles, CA",
     "price": "$$$",
     "types": ["Music", "Popular"],
-    "distance": 8
+    "distance": 8,
+    "description": "Sway to the rhythm of the waves at the Beach Concert Series on Santa Monica Beach. A music-filled experience in the picturesque setting of the beach!"
   },
   {
     "id": 12,
@@ -117,7 +128,8 @@
     "location": "Central Park, New York, NY",
     "price": "$",
     "types": ["Food", "Budget", "Popular"],
-    "distance": 5
+    "distance": 5,
+    "description": "Indulge in a taco fiesta at Central Park, New York. The Taco Festival promises a budget-friendly and popular celebration of delicious tacos!"
   },
   {
     "id": 13,
@@ -127,7 +139,8 @@
     "location": "American Airlines Center, Dallas, TX",
     "price": "$$$",
     "types": ["Sport"],
-    "distance": 7
+    "distance": 7,
+    "description": "Witness the intense competition at the Basketball Championship in the American Airlines Center, Dallas. A thrilling sports showdown for basketball fans!"
   },
   {
     "id": 14,
@@ -137,7 +150,8 @@
     "location": "Wynwood Walls, Miami, FL",
     "price": "$",
     "types": ["Art", "Music", "Budget"],
-    "distance": 10
+    "distance": 10,
+    "description": "Immerse yourself in the artistic vibes of Miami at the Artsy Festival in Wynwood Walls. A budget-friendly event blending art and music in a creative atmosphere!"
   },
   {
     "id": 15,
@@ -147,7 +161,8 @@
     "location": "Hollywood Blvd, Los Angeles, CA",
     "price": "$$$",
     "types": ["Music", "Popular"],
-    "distance": 9
+    "distance": 9,
+    "description": "Step into the glamour of Hollywood at the Party Night on Hollywood Blvd, Los Angeles. A night of music and excitement in the heart of the entertainment capital!"
   },
   {
     "id": 16,
@@ -157,7 +172,8 @@
     "location": "Times Square, New York, NY",
     "price": "$$$",
     "types": ["Music", "Popular"],
-    "distance": 6
+    "distance": 6,
+    "description": "Experience the magic of Broadway at the Extravaganza in Times Square, New York. A dazzling showcase of popular music and theatrical performances!"
   },
   {
     "id": 17,
@@ -167,7 +183,8 @@
     "location": "Deep Ellum, Dallas, TX",
     "price": "$",
     "types": ["Food", "Budget"],
-    "distance": 11
+    "distance": 11,
+    "description": "Satisfy your BBQ cravings at the BBQ Fest in Deep Ellum, Dallas. A budget-friendly celebration of smoky flavors and delicious barbecued delights!"
   },
   {
     "id": 18,
@@ -177,7 +194,8 @@
     "location": "AT&T Stadium, Dallas, TX",
     "price": "$$$",
     "types": ["Sport"],
-    "distance": 3
+    "distance": 3,
+    "description": "Catch the excitement of the Sports Showdown at the iconic AT&T Stadium in Dallas. A high-energy sports event featuring top athletes and thrilling competitions!"
   },
   {
     "id": 19,
@@ -187,7 +205,8 @@
     "location": "Miami Beach, Miami, FL",
     "price": "free",
     "types": ["Art", "Popular", "Budget"],
-    "distance": 8
+    "distance": 8,
+    "description": "Experience the creative vibes at the Beach Art Festival on Miami Beach. A free and popular event featuring a diverse display of artistic expressions!"
   },
   {
     "id": 20,
@@ -197,7 +216,8 @@
     "location": "Downtown Los Angeles, CA",
     "price": "$$$",
     "types": ["Music", "Popular"],
-    "distance": 7
+    "distance": 7,
+    "description": "Immerse yourself in the soulful melodies at Jazz Night Out in Downtown Los Angeles. A night of premium jazz music for music enthusiasts!"
   },
   {
     "id": 21,
@@ -207,7 +227,8 @@
     "location": "New York City, NY",
     "price": "$$",
     "types": ["Sports", "Popular"],
-    "distance": 9
+    "distance": 9,
+    "description": "Join the excitement of the NYC Marathon and run through the iconic streets of New York City. A popular sports event for runners and spectators alike!"
   },
   {
     "id": 22,
@@ -217,7 +238,8 @@
     "location": "Downtown Miami, FL",
     "price": "free",
     "types": ["Seasonal", "Popular", "Budget", "Food"],
-    "distance": 10
+    "distance": 10,
+    "description": "Celebrate the magic of winter in Miami at the Winter Wonderland event in Downtown. A free and popular seasonal celebration featuring festive delights and food!"
   },
   {
     "id": 23,
@@ -227,7 +249,8 @@
     "location": "Griffith Observatory, Los Angeles, CA",
     "price": "$",
     "types": ["Seasonal", "Popular", "Budget"],
-    "distance": 4
+    "distance": 4,
+    "description": "Experience the enchantment of the Festive Lights Festival at Griffith Observatory, Los Angeles. A budget-friendly seasonal celebration filled with twinkling lights and joy!"
   },
   {
     "id": 24,
@@ -237,6 +260,7 @@
     "location": "Central Park, New York, NY",
     "price": "$$",
     "types": ["Seasonal", "Popular"],
-    "distance": 12
+    "distance": 12,
+    "description": "Immerse yourself in a winter wonderland at the Snowy Central Park Celebration in New York. A popular seasonal event filled with snowy landscapes and festive cheer!"
   }
 ]

@@ -42,6 +42,9 @@ import Laseasonal from "../images/laseasonal.jpg";
 import Nyseasonal from "../images/nyseasonal.jpg";
 import { HeartIcon } from "./HeartIcon";
 import { useNavigate } from "react-router-dom";
+import { SearchTypeForDetails } from "../types/types";
+import { DateRange } from "@mui/x-date-pickers-pro";
+import dayjs, { Dayjs } from "dayjs";
 
 import DataSet from "../events.json";
 
@@ -56,6 +59,7 @@ interface eventProps {
   price: string;
   types: string[];
   distance: number;
+  description: string;
 }
 
 function Results() {
@@ -70,17 +74,66 @@ function Results() {
   const [liked, setLiked] = React.useState<boolean[]>(
     new Array(events.length).fill(false)
   );
+  const [value, setValue] = React.useState<DateRange<Dayjs>>([
+    dayjs(),
+    dayjs().add(1, "day"),
+  ]);
+  let dateValid = false;
   const navigate = useNavigate();
 
   const filterEvents = () => {
+    let types = [...selectedKeys];
     let filtered = events.filter((event) => {
       if (event.location.includes(citySearch)) {
         if (event.name.includes(stringSearch)) {
-          return true;
+          if (startDateSearch && endDateSearch) {
+            let startDate = new Date(startDateSearch);
+            let endDate = new Date(endDateSearch);
+            let eventDate = new Date(event.date);
+            if (eventDate >= startDate && eventDate <= endDate) {
+              console.log(types);
+              if (types.length > 0) {
+                let found = false;
+                types.forEach((key) => {
+                  if (event.types.includes(key)) {
+                    found = true;
+                  }
+                });
+                console.log("found " + found);
+                console.log(event.types + " instead of " + selectedKeys);
+                return found;
+              } else {
+                return true;
+              }
+            } else {
+              console.log("1");
+              console.log(eventDate + " instead of " + startDate);
+              console.log(eventDate + " instead of " + endDate);
+              return false;
+            }
+          } else {
+            if (selectedKeys.size > 0) {
+              let found = false;
+              [...selectedKeys].forEach((key) => {
+                if (event.types.includes(key)) {
+                  found = true;
+                }
+              });
+              console.log("found2 " + found);
+              console.log(event.types + " instead of " + selectedKeys);
+              return found;
+            } else {
+              return true;
+            }
+          }
         } else {
+          console.log("2");
+          console.log(event.name + " instead of " + stringSearch);
           return false;
         }
       } else {
+        console.log("3");
+        console.log(event.location + " instead of " + citySearch);
         return false;
       }
     });
@@ -89,11 +142,19 @@ function Results() {
 
   const handleButtonClick = (eventId: number) => {
     // Use the 'history' object to navigate to the event details page
-    let fromSearch = false;
-    if (eventId == 3) {
-      fromSearch = true;
-    }
-    navigate("/event/" + eventId, { state: fromSearch });
+    let fromSearch = true;
+    let selectedValue =
+      selectedKeys.size > 0 ? [...selectedKeys].join(", ") : "";
+    const searchInput: SearchTypeForDetails = {
+      stringSearch,
+      citySearch,
+      startDateSearch,
+      endDateSearch,
+      selectedValue,
+      fromSearch,
+      dateValid,
+    };
+    navigate("/event/" + eventId, { state: searchInput });
   };
 
   const handleLikeClick = (eventId: number) => {
@@ -116,11 +177,35 @@ function Results() {
     setLiked(newLiked);
   };
 
+  const setDates = () => {
+    const startDate = dayjs(value[0]);
+    const endDate = dayjs(value[1]);
+    setStartDateSearch(startDate.format("YYYY/MM/DD"));
+    setEndDateSearch(endDate.format("YYYY/MM/DD"));
+    console.log(value);
+    console.log(startDateSearch);
+    console.log(endDateSearch);
+    console.log(startDate.format("YYYY/MM/DD"));
+    console.log(endDate.format("YYYY/MM/DD"));
+    if (startDate.isValid() && endDate.isValid()) {
+      dateValid = true;
+    }
+  };
+
   useEffect(() => {
     setCitySearch(state.state.citySearch);
     setStringSearch(state.state.stringSearch);
-    setStartDateSearch(state.state.startDateSearch);
-    setEndDateSearch(state.state.endDateSearch);
+    dateValid = state.state.dateValid;
+    if (dateValid) {
+      setStartDateSearch(state.state.startDateSearch);
+      setEndDateSearch(state.state.endDateSearch);
+      console.log(state.state.startDateSearch);
+      console.log(state.state.endDateSearch);
+      setValue([
+        dayjs(state.state.startDateSearch),
+        dayjs(state.state.endDateSearch),
+      ]);
+    }
     const selectedValueArray = state.state.selectedValue.split(", ");
     setSelectedKeys(new Set(selectedValueArray));
   }, []);
@@ -296,7 +381,14 @@ function Results() {
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DemoContainer components={["DateRangePicker"]}>
             <DateRangePicker
-              localeText={{ start: "Start Date", end: "End Date" }}
+              localeText={{
+                start: "Start Date",
+                end: "End Date",
+              }}
+              onChange={(newValue) => {
+                setValue(newValue as DateRange<Dayjs>);
+                setDates();
+              }}
             />
           </DemoContainer>
         </LocalizationProvider>
@@ -510,9 +602,9 @@ function Results() {
             </div>
             <Button
               isIconOnly
-              color="undefined"
               aria-label="Like"
               className="m-3"
+              style={{ backgroundColor: "transparent" }}
               onClick={() => handleLikeClick(event.id)}
             >
               <HeartIcon

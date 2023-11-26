@@ -17,7 +17,9 @@ import { useNavigate } from "react-router-dom";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers-pro";
 import { AdapterDayjs } from "@mui/x-date-pickers-pro/AdapterDayjs";
+import { DateRange } from "@mui/x-date-pickers-pro";
 import { DateRangePicker } from "@mui/x-date-pickers-pro/DateRangePicker";
+import dayjs, { Dayjs } from "dayjs";
 
 function SearchCard() {
   const [stringSearch, setStringSearch] = React.useState("");
@@ -25,6 +27,11 @@ function SearchCard() {
   const [startDateSearch, setStartDateSearch] = React.useState("01/01/2023");
   const [endDateSearch, setEndDateSearch] = React.useState("12/31/2023");
   const [selectedKeys, setSelectedKeys] = React.useState(new Set([""]));
+  const [value, setValue] = React.useState<DateRange<Dayjs>>([
+    dayjs(),
+    dayjs().add(1, "day"),
+  ]);
+  let dateValid = false;
   const navigate = useNavigate();
 
   const selectedValue = React.useMemo(
@@ -33,19 +40,30 @@ function SearchCard() {
   );
 
   const submitValues = () => {
-    console.log(stringSearch);
-    console.log(citySearch);
-    console.log(startDateSearch);
-    console.log(endDateSearch);
-    console.log(selectedValue);
     const searchInput: SearchType = {
       stringSearch,
       citySearch,
       startDateSearch,
       endDateSearch,
       selectedValue,
+      dateValid,
     };
     navigate("/results", { state: searchInput });
+  };
+
+  const setDates = () => {
+    const startDate = dayjs(value[0]);
+    const endDate = dayjs(value[1]);
+    setStartDateSearch(startDate.format("YYYY/MM/DD"));
+    setEndDateSearch(endDate.format("YYYY/MM/DD"));
+    console.log(value);
+    console.log(startDateSearch);
+    console.log(endDateSearch);
+    console.log(startDate.format("YYYY/MM/DD"));
+    console.log(endDate.format("YYYY/MM/DD"));
+    if (startDate.isValid() && endDate.isValid()) {
+      dateValid = true;
+    }
   };
 
   return (
@@ -99,6 +117,10 @@ function SearchCard() {
                             localeText={{
                               start: "Start Date",
                               end: "End Date",
+                            }}
+                            onChange={(newValue) => {
+                              setValue(newValue as DateRange<Dayjs>);
+                              setDates();
                             }}
                           />
                         </DemoContainer>

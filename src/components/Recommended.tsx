@@ -40,6 +40,7 @@ interface eventProps {
   price: string;
   types: string[];
   distance: number;
+  description: string;
 }
 
 function Recommended() {
@@ -66,9 +67,6 @@ function Recommended() {
 
   const handleButtonClick = (eventId: number) => {
     let fromSearch = false;
-    if (eventId == 3) {
-      fromSearch = true;
-    }
     navigate("/event/" + eventId, { state: fromSearch });
   };
 
@@ -183,9 +181,9 @@ function Recommended() {
             </div>
             <Button
               isIconOnly
-              color="undefined"
               aria-label="Like"
               className="m-3"
+              style={{ backgroundColor: "transparent" }}
               onClick={() => handleLikeClick(event.id)}
             >
               <HeartIcon

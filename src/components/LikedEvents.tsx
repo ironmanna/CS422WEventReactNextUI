@@ -46,6 +46,7 @@ interface eventProps {
   price: string;
   types: string[];
   distance: number;
+  description: string;
 }
 
 function LikedEvents() {
@@ -296,9 +297,9 @@ function LikedEvents() {
             </div>
             <Button
               isIconOnly
-              color="undefined"
               aria-label="Like"
               className="m-3"
+              style={{ backgroundColor: "transparent" }}
               onClick={() => handleLikeClick(event.id)}
             >
               <HeartIcon
