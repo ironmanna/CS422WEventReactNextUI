@@ -126,11 +126,11 @@ function SearchCard() {
                             <DropdownItem key="Art">Art</DropdownItem>
                             <DropdownItem key="Food">Food</DropdownItem>
                             <DropdownItem key="Music">Music</DropdownItem>
-                            <DropdownItem key="Sport">Sport</DropdownItem>
                             <DropdownItem key="Budget">
                               On a budget
                             </DropdownItem>
                             <DropdownItem key="Seasonal">Seasonal</DropdownItem>
+                            <DropdownItem key="Sport">Sport</DropdownItem>
                           </DropdownMenu>
                         </Dropdown>
                       </div>

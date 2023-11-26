@@ -16,13 +16,13 @@ function TopNavbar() {
     <>
       <Navbar maxWidth="full">
         <NavbarItem>
-          <Link href="#" color="secondary">
+          <Link href="/" color="secondary">
             WEvent
           </Link>
         </NavbarItem>
         <NavbarContent className="hidden sm:flex gap-4" justify="start">
           <NavbarItem>
-            <Link href="#" color="foreground">
+            <Link href="/liked" color="foreground">
               Liked Events
             </Link>
           </NavbarItem>

@@ -24,10 +24,16 @@ import Nycmarathon from "../images/nycmarathon.jpg";
 import Miamiseasonal from "../images/miamiseasonal.jpg";
 import Laseasonal from "../images/laseasonal.jpg";
 import Nyseasonal from "../images/nyseasonal.jpg";
-import { Button } from "@nextui-org/react";
 import { HeartIcon } from "./HeartIcon";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+  Button,
+} from "@nextui-org/react";
 
 import DataSet from "../events.json";
 
@@ -42,7 +48,7 @@ interface eventProps {
   distance: number;
 }
 
-function Recommended() {
+function LikedEvents() {
   const events: eventProps[] = DataSet;
   const [filteredEvents, setFilteredEvents] = React.useState(events);
   const navigate = useNavigate();
@@ -52,10 +58,7 @@ function Recommended() {
 
   const filterEvents = () => {
     let filtered = events.filter((event) => {
-      if (
-        event.types.includes("Popular") &&
-        event.location.includes("Chicago")
-      ) {
+      if (liked[event.id]) {
         return true;
       } else {
         return false;
@@ -93,7 +96,6 @@ function Recommended() {
   };
 
   useEffect(() => {
-    filterEvents();
     const arrayOfLikes = JSON.parse(
       localStorage.getItem("likedEvents") || "[]"
     );
@@ -103,6 +105,10 @@ function Recommended() {
     }
     setLiked(newLiked);
   }, []);
+
+  useEffect(() => {
+    filterEvents();
+  }, [liked]);
 
   const getNameImage = (index: number) => {
     switch (index) {
@@ -159,9 +165,116 @@ function Recommended() {
     }
   };
 
+  const handleSort = (sortType: string) => {
+    let sortedEvents = [...filteredEvents];
+    if (sortType == "Lower") {
+      let freeEvents = [...filteredEvents].filter(
+        (event) => event.price.toLowerCase() === "free"
+      );
+      let oneEvents = [...filteredEvents].filter(
+        (event) => event.price.toLowerCase() === "$"
+      );
+      let onetwoEvents = [...filteredEvents].filter(
+        (event) => event.price.toLowerCase() === "$-$$"
+      );
+      let twoEvents = [...filteredEvents].filter(
+        (event) => event.price.toLowerCase() === "$$"
+      );
+      let twothreeEvents = [...filteredEvents].filter(
+        (event) => event.price.toLowerCase() === "$$-$$$"
+      );
+      let threeEvents = [...filteredEvents].filter(
+        (event) => event.price.toLowerCase() === "$$$"
+      );
+      let threefourEvents = [...filteredEvents].filter(
+        (event) => event.price.toLowerCase() === "$$$-$$$$"
+      );
+      let fourEvents = [...filteredEvents].filter(
+        (event) => event.price.toLowerCase() === "$$$$"
+      );
+      sortedEvents = [
+        ...freeEvents,
+        ...oneEvents,
+        ...onetwoEvents,
+        ...twoEvents,
+        ...twothreeEvents,
+        ...threeEvents,
+        ...threefourEvents,
+        ...fourEvents,
+      ];
+    } else if (sortType == "Higher") {
+      let freeEvents = [...filteredEvents].filter(
+        (event) => event.price.toLowerCase() === "free"
+      );
+      let oneEvents = [...filteredEvents].filter(
+        (event) => event.price.toLowerCase() === "$"
+      );
+      let onetwoEvents = [...filteredEvents].filter(
+        (event) => event.price.toLowerCase() === "$-$$"
+      );
+      let twoEvents = [...filteredEvents].filter(
+        (event) => event.price.toLowerCase() === "$$"
+      );
+      let twothreeEvents = [...filteredEvents].filter(
+        (event) => event.price.toLowerCase() === "$$-$$$"
+      );
+      let threeEvents = [...filteredEvents].filter(
+        (event) => event.price.toLowerCase() === "$$$"
+      );
+      let threefourEvents = [...filteredEvents].filter(
+        (event) => event.price.toLowerCase() === "$$$-$$$$"
+      );
+      let fourEvents = [...filteredEvents].filter(
+        (event) => event.price.toLowerCase() === "$$$$"
+      );
+      sortedEvents = [
+        ...fourEvents,
+        ...threefourEvents,
+        ...threeEvents,
+        ...twothreeEvents,
+        ...twoEvents,
+        ...onetwoEvents,
+        ...oneEvents,
+        ...freeEvents,
+      ];
+    } else if (sortType == "Closest") {
+      sortedEvents.sort((a, b) => a.distance - b.distance);
+    } else if (sortType == "Farthest") {
+      sortedEvents.sort((a, b) => b.distance - a.distance);
+    }
+    setFilteredEvents(sortedEvents);
+  };
+
   return (
     <>
-      <h1 className="pl-1 pb-0.75 pt-10 text-3xl">Popular around you</h1>
+      <h1 className="pl-1 pb-0.75 pt-10 text-3xl">Liked Events</h1>
+
+      <div id="Sort" className="absolute right-10 top-20">
+        <Dropdown>
+          <DropdownTrigger>
+            <Button>Sort</Button>
+          </DropdownTrigger>
+          <DropdownMenu
+            aria-label="Multiple selection example"
+            variant="flat"
+            closeOnSelect={false}
+            disallowEmptySelection={false}
+          >
+            <DropdownItem key="Lower" onClick={() => handleSort("Lower")}>
+              Price(Lower)
+            </DropdownItem>
+            <DropdownItem key="Higher" onClick={() => handleSort("Higher")}>
+              Price(Higher)
+            </DropdownItem>
+            <DropdownItem key="Closest" onClick={() => handleSort("Closest")}>
+              Distance(closest)
+            </DropdownItem>
+            <DropdownItem key="Farthest" onClick={() => handleSort("Farthest")}>
+              Distance(farthest)
+            </DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+      </div>
 
       <div className="events pl-5 pr-5">
         {filteredEvents.map((event) => (
@@ -200,4 +313,4 @@ function Recommended() {
   );
 }
 
-export default Recommended;
+export default LikedEvents;

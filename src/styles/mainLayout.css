@@ -70,7 +70,7 @@ header {
 .events-with-sidenav {
   margin-left: 300px;
   padding: 0px 10px;
-  margin-top: 67px;
+  margin-top: 40px;
 }
 
 /* Fixed sidenav, full height */
@@ -338,11 +338,6 @@ header {
 .liked-header {
   margin-top: 70px;
   margin-bottom: 10px;
-}
-
-/*Results*/
-#results-header {
-  margin-top: 100px;
 }
 
 #buttonSearch {
