@@ -293,6 +293,7 @@ function LikedEvents() {
               <p>Date: {event.date}</p>
               <p>Location: {event.location}</p>
               <p>Distance: {event.distance} mi</p>
+              <p>Types: {event.types.map((type) => type).join(", ")}</p>
               <p>Price: {event.price}</p>
             </div>
             <Button

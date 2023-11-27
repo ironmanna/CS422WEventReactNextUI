@@ -75,8 +75,8 @@ function Results() {
     new Array(events.length).fill(false)
   );
   const [value, setValue] = React.useState<DateRange<Dayjs>>([
-    dayjs(),
-    dayjs().add(1, "day"),
+    dayjs(state.state.startDateSearch),
+    dayjs(state.state.endDateSearch),
   ]);
   const [priceMax, setPriceMax] = React.useState(80);
   const [distanceMax, setDistanceMax] = React.useState(999);
@@ -108,17 +108,23 @@ function Results() {
 
   const filterEvents = () => {
     let types = [...selectedKeys];
-    console.log(priceMax);
-    console.log(distanceMax);
+    //console.log(priceMax);
+    //console.log(distanceMax);
+    let nameToSearch = stringSearch.toLowerCase();
+    let cityToSearch = citySearch.toLowerCase();
     let filtered = events.filter((event) => {
-      if (event.location.includes(citySearch)) {
-        if (event.name.includes(stringSearch)) {
+      let location = event.location.toLowerCase();
+      //console.log(location);
+      //console.log(cityToSearch);
+      if (location.includes(cityToSearch)) {
+        let name = event.name.toLowerCase();
+        if (name.includes(nameToSearch)) {
           if (startDateSearch && endDateSearch) {
             let startDate = new Date(startDateSearch);
             let endDate = new Date(endDateSearch);
             let eventDate = new Date(event.date);
             if (eventDate >= startDate && eventDate <= endDate) {
-              console.log(types);
+              //console.log(types);
               if (types.length > 0) {
                 let found = false;
                 types.forEach((key) => {
@@ -126,12 +132,12 @@ function Results() {
                     found = true;
                   }
                 });
-                console.log("found " + found);
-                console.log(event.types + " instead of " + selectedKeys);
+                //console.log("found " + found);
+                //console.log(event.types + " instead of " + selectedKeys);
 
                 if (found) {
                   let price = getPriceTranslated(event.price);
-                  console.log("Event price: ", price);
+                  //console.log("Event price: ", price);
                   if (event.distance <= distanceMax) {
                     if (event.price == "Free") {
                       return true;
@@ -150,7 +156,7 @@ function Results() {
                 }
               } else {
                 let price = getPriceTranslated(event.price);
-                console.log("Event price: ", price);
+                //console.log("Event price: ", price);
                 if (event.distance <= distanceMax) {
                   if (event.price == "Free") {
                     return true;
@@ -166,9 +172,9 @@ function Results() {
                 }
               }
             } else {
-              console.log("1");
-              console.log(eventDate + " instead of " + startDate);
-              console.log(eventDate + " instead of " + endDate);
+              //console.log("1");
+              //console.log(eventDate + " instead of " + startDate);
+              //console.log(eventDate + " instead of " + endDate);
               return false;
             }
           } else {
@@ -179,11 +185,11 @@ function Results() {
                   found = true;
                 }
               });
-              console.log("found2 " + found);
-              console.log(event.types + " instead of " + selectedKeys);
+              //console.log("found2 " + found);
+              //console.log(event.types + " instead of " + selectedKeys);
               if (found) {
                 let price = getPriceTranslated(event.price);
-                console.log("Event price: ", price);
+                //console.log("Event price: ", price);
                 if (event.distance <= distanceMax) {
                   if (event.price == "Free") {
                     return true;
@@ -202,7 +208,7 @@ function Results() {
               }
             } else {
               let price = getPriceTranslated(event.price);
-              console.log("Event price: ", price);
+              //console.log("Event price: ", price);
               if (event.distance <= distanceMax) {
                 if (event.price == "Free") {
                   return true;
@@ -219,13 +225,13 @@ function Results() {
             }
           }
         } else {
-          console.log("2");
-          console.log(event.name + " instead of " + stringSearch);
+          //console.log("2");
+          //console.log(event.name + " instead of " + stringSearch);
           return false;
         }
       } else {
-        console.log("3");
-        console.log(event.location + " instead of " + citySearch);
+        //console.log("3");
+        //console.log(event.location + " instead of " + citySearch);
         return false;
       }
     });
@@ -274,11 +280,11 @@ function Results() {
     const endDate = dayjs(value[1]);
     setStartDateSearch(startDate.format("YYYY/MM/DD"));
     setEndDateSearch(endDate.format("YYYY/MM/DD"));
-    console.log(value);
-    console.log(startDateSearch);
-    console.log(endDateSearch);
-    console.log(startDate.format("YYYY/MM/DD"));
-    console.log(endDate.format("YYYY/MM/DD"));
+    //console.log(value);
+    //console.log(startDateSearch);
+    //console.log(endDateSearch);
+    //console.log(startDate.format("YYYY/MM/DD"));
+    //console.log(endDate.format("YYYY/MM/DD"));
     if (startDate.isValid() && endDate.isValid()) {
       dateValid = true;
     }
@@ -291,8 +297,8 @@ function Results() {
     if (dateValid) {
       setStartDateSearch(state.state.startDateSearch);
       setEndDateSearch(state.state.endDateSearch);
-      console.log(state.state.startDateSearch);
-      console.log(state.state.endDateSearch);
+      //console.log(state.state.startDateSearch);
+      //console.log(state.state.endDateSearch);
       setValue([
         dayjs(state.state.startDateSearch),
         dayjs(state.state.endDateSearch),
@@ -460,6 +466,7 @@ function Results() {
           <Input
             type="Search"
             label="Search"
+            onChange={(event) => setStringSearch(event.target.value)}
             endContent={
               <SearchIcon
                 className="text-default-400 "
@@ -489,6 +496,7 @@ function Results() {
                 start: "Start Date",
                 end: "End Date",
               }}
+              defaultValue={[value[0], value[1]]}
               onChange={(newValue) => {
                 setValue(newValue as DateRange<Dayjs>);
                 setDates();
@@ -606,7 +614,7 @@ function Results() {
                 selectedKeys.delete("Budget");
                 setSelectedKeys(new Set([...selectedKeys]));
               }
-              console.log(selectedKeys);
+              //console.log(selectedKeys);
             }}
           >
             On a Budget
@@ -714,6 +722,7 @@ function Results() {
               <p>Date: {event.date}</p>
               <p>Location: {event.location}</p>
               <p>Distance: {event.distance} mi</p>
+              <p>Types: {event.types.map((type) => type).join(", ")}</p>
               <p>Price: {event.price}</p>
             </div>
             <Button

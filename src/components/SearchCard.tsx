@@ -24,13 +24,9 @@ import dayjs, { Dayjs } from "dayjs";
 function SearchCard() {
   const [stringSearch, setStringSearch] = React.useState("");
   const [citySearch, setCitySearch] = React.useState("");
-  const [startDateSearch, setStartDateSearch] = React.useState("01/01/2023");
-  const [endDateSearch, setEndDateSearch] = React.useState("12/31/2023");
+  let startDateSearch = "";
+  let endDateSearch = "";
   const [selectedKeys, setSelectedKeys] = React.useState(new Set([""]));
-  const [value, setValue] = React.useState<DateRange<Dayjs>>([
-    dayjs(),
-    dayjs().add(1, "day"),
-  ]);
   let dateValid = false;
   const navigate = useNavigate();
 
@@ -51,11 +47,11 @@ function SearchCard() {
     navigate("/results", { state: searchInput });
   };
 
-  const setDates = () => {
+  const setDates = (value: DateRange<Dayjs>) => {
     const startDate = dayjs(value[0]);
     const endDate = dayjs(value[1]);
-    setStartDateSearch(startDate.format("YYYY/MM/DD"));
-    setEndDateSearch(endDate.format("YYYY/MM/DD"));
+    startDateSearch = startDate.format("YYYY/MM/DD");
+    endDateSearch = endDate.format("YYYY/MM/DD");
     console.log(value);
     console.log(startDateSearch);
     console.log(endDateSearch);
@@ -122,8 +118,7 @@ function SearchCard() {
                               end: "End Date",
                             }}
                             onChange={(newValue) => {
-                              setValue(newValue as DateRange<Dayjs>);
-                              setDates();
+                              setDates(newValue as DateRange<Dayjs>);
                             }}
                           />
                         </DemoContainer>
@@ -143,6 +138,7 @@ function SearchCard() {
                               style={{
                                 width: "100%",
                                 height: "100%",
+                                color: "#73737c",
                                 backgroundColor: "white",
                               }}
                               className="no-hover"
