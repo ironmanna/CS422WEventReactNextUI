@@ -299,7 +299,11 @@ function Results() {
       ]);
     }
     const selectedValueArray = state.state.selectedValue.split(", ");
-    setSelectedKeys(new Set(selectedValueArray));
+    if (selectedValueArray[0] !== "") {
+      setSelectedKeys(new Set(selectedValueArray));
+    } else {
+      setSelectedKeys(new Set());
+    }
   }, []);
 
   useEffect(() => {
@@ -316,53 +320,53 @@ function Results() {
 
   const getNameImage = (index: number) => {
     switch (index) {
-      case 0:
-        return Cupcake;
       case 1:
-        return Fulton;
+        return Cupcake;
       case 2:
-        return Beer;
+        return Fulton;
       case 3:
-        return Christmas;
+        return Beer;
       case 4:
-        return Sushi;
+        return Christmas;
       case 5:
-        return Rock;
+        return Sushi;
       case 6:
-        return FoodArt;
+        return Rock;
       case 7:
-        return Wonderland;
+        return FoodArt;
       case 8:
-        return ChiMaraton;
+        return Wonderland;
       case 9:
-        return Artshow;
+        return ChiMaraton;
       case 10:
-        return Beachconcert;
+        return Artshow;
       case 11:
-        return Tacofestival;
+        return Beachconcert;
       case 12:
-        return Basketball;
+        return Tacofestival;
       case 13:
-        return Artsymiami;
+        return Basketball;
       case 14:
-        return Hollywoodparty;
+        return Artsymiami;
       case 15:
-        return Broadway;
+        return Hollywoodparty;
       case 16:
-        return Bbqfest;
+        return Broadway;
       case 17:
-        return Sportsshowdown;
+        return Bbqfest;
       case 18:
-        return Beachartfest;
+        return Sportsshowdown;
       case 19:
-        return Jazznight;
+        return Beachartfest;
       case 20:
-        return Nycmarathon;
+        return Jazznight;
       case 21:
-        return Miamiseasonal;
+        return Nycmarathon;
       case 22:
-        return Laseasonal;
+        return Miamiseasonal;
       case 23:
+        return Laseasonal;
+      case 24:
         return Nyseasonal;
       default:
         return Cupcake;
@@ -535,7 +539,7 @@ function Results() {
           label="Distance (mi)"
           color="foreground"
           size="sm"
-          step={1}
+          step={10}
           maxValue={999}
           minValue={0}
           defaultValue={0}

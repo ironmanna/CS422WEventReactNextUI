@@ -13,7 +13,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/results" element={<ResultsPage />} />
           <Route path="/event/:id" element={<EventDetails />} />
-          <Route path="/liked" element={<LikedPage />} />
+          <Route path="/likedEvents" element={<LikedPage />} />
         </Routes>
       </Router>
     </>

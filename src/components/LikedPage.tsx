@@ -4,7 +4,7 @@ import LikedEvents from "./LikedEvents";
 function LikedPage() {
   return (
     <>
-      <TopNavbar />
+      <TopNavbar id={2} />
       <LikedEvents />
     </>
   );

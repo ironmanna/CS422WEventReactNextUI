@@ -4,7 +4,7 @@ import Results from "./Results";
 function HomePage() {
   return (
     <>
-      <TopNavbar />
+      <TopNavbar id={3} />
       <Results />
     </>
   );

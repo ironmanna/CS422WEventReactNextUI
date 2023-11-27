@@ -220,7 +220,7 @@ header {
 .event-image {
   flex: 1;
   height: 160px;
-  width: 160px;
+  width: 800px;
   overflow: hidden;
   border-radius: 25px;
 }
@@ -364,7 +364,7 @@ header {
   width: 100%;
   display: flex;
   align-items: center;
-  height: 700px;
+  height: 550px;
 }
 
 .imageContainer {

@@ -90,6 +90,10 @@ function SearchCard() {
                       onChange={(event) =>
                         setStringSearch(event.currentTarget.value)
                       }
+                      style={{
+                        backgroundColor: "#FFFFFF",
+                        borderColor: "#FFFFFF",
+                      }}
                     />
                     <div className="filters space-x-2">
                       <Autocomplete
@@ -97,6 +101,10 @@ function SearchCard() {
                         className="max-w-xs py-2"
                         value={citySearch}
                         onInputChange={(city) => setCitySearch(String(city))}
+                        style={{
+                          backgroundColor: "#FFFFFF",
+                          borderColor: "#FFFFFF",
+                        }}
                       >
                         <AutocompleteItem key="Chicago">
                           Chicago
@@ -129,7 +137,7 @@ function SearchCard() {
                       <div id="types">
                         <Dropdown>
                           <DropdownTrigger>
-                            <Button>
+                            <Button style={{ backgroundColor: "#FFFFFF" }}>
                               Types:
                               <ChevronDownIcon className="h-5 w-5" />
                             </Button>
@@ -163,8 +171,15 @@ function SearchCard() {
               <div className="search-container">
                 <Button
                   className="search-button"
-                  color="success"
                   onClick={() => submitValues()}
+                  style={{
+                    backgroundColor: "#426c55",
+                    borderColor: "#426c55",
+                    width: "200px",
+                    height: "50px",
+                    fontSize: "25px",
+                    color: "white",
+                  }}
                 >
                   Search
                 </Button>

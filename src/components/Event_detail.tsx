@@ -74,53 +74,53 @@ function Event_details() {
 
   const getNameImage = (index: number) => {
     switch (index) {
-      case 0:
-        return Cupcake;
       case 1:
-        return Fulton;
+        return Cupcake;
       case 2:
-        return Beer;
+        return Fulton;
       case 3:
-        return Christmas;
+        return Beer;
       case 4:
-        return Sushi;
+        return Christmas;
       case 5:
-        return Rock;
+        return Sushi;
       case 6:
-        return FoodArt;
+        return Rock;
       case 7:
-        return Wonderland;
+        return FoodArt;
       case 8:
-        return ChiMaraton;
+        return Wonderland;
       case 9:
-        return Artshow;
+        return ChiMaraton;
       case 10:
-        return Beachconcert;
+        return Artshow;
       case 11:
-        return Tacofestival;
+        return Beachconcert;
       case 12:
-        return Basketball;
+        return Tacofestival;
       case 13:
-        return Artsymiami;
+        return Basketball;
       case 14:
-        return Hollywoodparty;
+        return Artsymiami;
       case 15:
-        return Broadway;
+        return Hollywoodparty;
       case 16:
-        return Bbqfest;
+        return Broadway;
       case 17:
-        return Sportsshowdown;
+        return Bbqfest;
       case 18:
-        return Beachartfest;
+        return Sportsshowdown;
       case 19:
-        return Jazznight;
+        return Beachartfest;
       case 20:
-        return Nycmarathon;
+        return Jazznight;
       case 21:
-        return Miamiseasonal;
+        return Nycmarathon;
       case 22:
-        return Laseasonal;
+        return Miamiseasonal;
       case 23:
+        return Laseasonal;
+      case 24:
         return Nyseasonal;
       default:
         return Cupcake;
@@ -174,13 +174,22 @@ function Event_details() {
 
   return (
     <>
-      <TopNavbar />
+      <TopNavbar id={3} />
       {state.state && (
         <Button
           className="search-button"
-          color="success"
           onClick={handleButtonClick}
-          style={{ position: "absolute", top: "10px", left: "10px" }}
+          style={{
+            position: "absolute",
+            top: "10px",
+            left: "10px",
+            backgroundColor: "#426c55",
+            borderColor: "#426c55",
+            width: "150px",
+            height: "50px",
+            fontSize: "20px",
+            color: "white",
+          }}
         >
           &lt; Search
         </Button>
@@ -198,12 +207,15 @@ function Event_details() {
             marginTop: "2rem",
           }}
         >
-          <div
-            className="event-image"
-            style={{ width: "60%", height: "50vh", margin: "auto" }}
-          >
+          <div className="event-image">
             <Image
-              width="100%"
+              style={{
+                width: "800px",
+                height: "300px",
+                margin: "0 auto",
+                display: "block",
+                objectFit: "cover",
+              }}
               alt="Event Image"
               src={getNameImage(parseInt(id || "0"))}
             />

@@ -5,7 +5,7 @@ import SearchCard from "./SearchCard";
 function HomePage() {
   return (
     <>
-      <TopNavbar />
+      <TopNavbar id={1} />
       <SearchCard />
       <Recommended />
     </>
