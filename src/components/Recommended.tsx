@@ -159,7 +159,7 @@ function Recommended() {
 
   return (
     <>
-      <h1 className="pl-1 pb-2 pt-10 text-3xl">Popular around you</h1>
+      <h1 className="pl-3 pb-2 pt-10 text-3xl">Popular around you</h1>
 
       <div className="events pl-5 pr-5">
         {filteredEvents.map((event) => (

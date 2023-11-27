@@ -265,8 +265,8 @@ header {
 
 .card {
   width: 60%;
-  margin-top: 70px;
-  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-bottom: 0px;
   margin-left: auto;
   margin-right: auto;
   align-items: center;
@@ -357,7 +357,7 @@ header {
   width: 100%;
   display: flex;
   align-items: center;
-  height: 550px;
+  height: 500px;
 }
 
 .imageContainer {
