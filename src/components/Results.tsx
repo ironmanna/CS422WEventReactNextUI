@@ -505,7 +505,7 @@ function Results() {
           </DemoContainer>
         </LocalizationProvider>
         <Slider
-          label="Price"
+          label="Max Price"
           color="foreground"
           size="sm"
           step={20}
@@ -544,7 +544,7 @@ function Results() {
         />
 
         <Slider
-          label="Distance (mi)"
+          label="Max Distance (mi)"
           color="foreground"
           size="sm"
           step={10}
