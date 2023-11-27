@@ -9,28 +9,12 @@ interface TopNavbarProps {
 function TopNavbar({ id }: TopNavbarProps) {
   let username = localStorage.getItem("username")?.replace(/['"]+/g, "") || "";
 
-  const handleClickProfile = () => {
-    if (username != "") {
-      window.location.href = "/logout";
-    } else {
-      window.location.href = "/login";
-    }
-  };
-
-  const handleClickLikedEvents = () => {
-    window.location.href = "/likedEvents";
-  };
-
-  const handleClickHome = () => {
-    window.location.href = "/";
-  };
-
   return (
     <>
       <Navbar maxWidth="full">
         <NavbarItem>
           <Link
-            onClick={handleClickHome}
+            href="/"
             style={
               id === 1
                 ? { color: "#426c55", fontSize: "20px", marginRight: "20px" }
@@ -43,7 +27,7 @@ function TopNavbar({ id }: TopNavbarProps) {
         <NavbarContent className="hidden sm:flex gap-4" justify="start">
           <NavbarItem>
             <Link
-              onClick={handleClickLikedEvents}
+              href="/likedEvents"
               style={
                 id === 2
                   ? { color: "#426c55", fontSize: "20px" }
@@ -60,7 +44,7 @@ function TopNavbar({ id }: TopNavbarProps) {
             {username != "" ? `Hi ${username}!` : "Login here ->"}
           </NavbarItem>
           <NavbarItem>
-            <Link onClick={handleClickProfile}>
+            <Link href={username !== "" ? "/logout" : "/login"}>
               <ProfileLogo />
             </Link>
           </NavbarItem>
