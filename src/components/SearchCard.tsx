@@ -68,7 +68,7 @@ function SearchCard() {
 
   return (
     <>
-      <div className="searchCard">
+      <div className="  ">
         {/*
         <div className="imageContainer">
           <img id="eventImage" src={eventImage} alt="Event Image" />
@@ -90,21 +90,16 @@ function SearchCard() {
                       onChange={(event) =>
                         setStringSearch(event.currentTarget.value)
                       }
-                      style={{
-                        backgroundColor: "#FFFFFF",
-                        borderColor: "#FFFFFF",
-                      }}
+                      variant="bordered"
                     />
                     <div className="filters space-x-2">
                       <Autocomplete
                         placeholder="Location: "
                         className="max-w-xs py-2"
+                        variant="bordered"
+                        style={{ height: "100%" }}
                         value={citySearch}
                         onInputChange={(city) => setCitySearch(String(city))}
-                        style={{
-                          backgroundColor: "#FFFFFF",
-                          borderColor: "#FFFFFF",
-                        }}
                       >
                         <AutocompleteItem key="Chicago">
                           Chicago
@@ -134,10 +129,24 @@ function SearchCard() {
                         </DemoContainer>
                       </LocalizationProvider>
 
-                      <div id="types">
+                      <div
+                        id="types"
+                        style={{
+                          paddingTop: "0.5rem",
+                          paddingBottom: "0.5rem",
+                        }}
+                      >
                         <Dropdown>
                           <DropdownTrigger>
-                            <Button style={{ backgroundColor: "#FFFFFF" }}>
+                            <Button
+                              variant="bordered"
+                              style={{
+                                width: "100%",
+                                height: "100%",
+                                backgroundColor: "white",
+                              }}
+                              className="no-hover"
+                            >
                               Types:
                               <ChevronDownIcon className="h-5 w-5" />
                             </Button>

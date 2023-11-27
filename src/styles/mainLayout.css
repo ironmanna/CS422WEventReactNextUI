@@ -138,12 +138,6 @@ header {
   padding-right: 8px;
 }
 
-.search-container button {
-  padding-right: 4px 8px;
-  cursor: pointer;
-  border: none;
-}
-
 /* Some media queries for responsiveness */
 @media screen and (max-height: 450px) {
   .sidenav {
@@ -247,7 +241,6 @@ header {
 
 .save-button {
   margin-right: 10px;
-  border: none;
   font-size: 20px;
   cursor: pointer;
   display: flex;
@@ -397,4 +390,9 @@ header {
 #eventDescription {
   margin-top: 660px;
   margin-bottom: 20px;
+}
+
+.no-hover:hover {
+  background-color: white !important;
+  border-color: grey !important;
 }
