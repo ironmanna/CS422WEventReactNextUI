@@ -7,6 +7,8 @@ interface TopNavbarProps {
 }
 
 function TopNavbar({ id }: TopNavbarProps) {
+  let username = localStorage.getItem("username")?.replace(/['"]+/g, "") || "";
+
   return (
     <>
       <Navbar maxWidth="full">
@@ -38,7 +40,14 @@ function TopNavbar({ id }: TopNavbarProps) {
         </NavbarContent>
 
         <NavbarContent as="div" justify="end">
-          <ProfileLogo />
+          <NavbarItem>
+            {username != "" ? `Hi ${username}!` : "Login here ->"}
+          </NavbarItem>
+          <NavbarItem>
+            <Link href={username !== "" ? "/logout" : "/login"}>
+              <ProfileLogo />
+            </Link>
+          </NavbarItem>
         </NavbarContent>
       </Navbar>
     </>

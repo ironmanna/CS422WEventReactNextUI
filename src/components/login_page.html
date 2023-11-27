@@ -1,0 +1,158 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React Login/Signup in HTML</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .login-container {
+      width: 400px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 0 40px #e5bdd0;
+      text-align: center; 
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    label {
+      margin-bottom: 10px;
+    }
+
+    input {
+      padding: 8px;
+      margin-bottom: 15px;
+    }
+
+    button {
+      padding: 10px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 60%; 
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .login-text {
+      color: #cc2a76;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+  <script type="text/babel">
+
+    const { useState } = React;
+
+    const Auth = () => {
+      const [username, setUsername] = useState('');
+      const [password, setPassword] = useState('');
+      const [loggedIn, setLoggedIn] = useState(false);
+      const [isSignup, setIsSignup] = useState(false);
+
+      const handleAuth = () => {
+        // Simulate authentication
+        if (username && password) {
+          setLoggedIn(true);
+        } else {
+          alert('Please enter both username and password.');
+        }
+      };
+
+      const handleLogout = () => {
+        setLoggedIn(false);
+        setUsername('');
+        setPassword('');
+      };
+
+      return (
+        <div className="login-container">
+          
+          {loggedIn ? (
+            // REPLACE THIS WITH THE LINK TO HOMEPAGE.......................
+            <div>
+              <h2>Welcome, {username}!</h2>
+              <button onClick={handleLogout}>Logout</button>
+            </div>
+          ) : (
+            <div>
+              <h2 className="login-text">{isSignup ? 'Sign Up' : 'Login'}</h2>
+              <form>
+                <label> 
+                  Username:</label>
+                  <input
+                    type="text"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
+                
+                <br />
+                <label>
+                  Password:</label>
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                
+                
+                {isSignup && (
+                  <div>
+                    <label>
+                      Confirm Password:</label><br/>
+                      <input
+                        type="password"
+                      />
+                    
+                    <br />
+                  </div>
+                )}
+                <button type="button" onClick={handleAuth}>
+                  {isSignup ? 'Sign Up' : 'Login'}
+                </button>
+                <br/>
+                <span>or</span>
+                
+                <button type="button" onClick={() => setIsSignup(!isSignup)}>
+                  {isSignup ? 'Switch to Login' : 'Switch to Sign Up'}
+                </button>
+              </form>
+            </div>
+          )}
+        </div>
+      );
+    };
+
+    ReactDOM.render(<Auth />, document.getElementById('root'));
+  </script>
+
+</body>
+</html>
