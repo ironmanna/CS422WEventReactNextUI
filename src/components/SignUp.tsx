@@ -1,5 +1,4 @@
 import "../styles/loginLayout.css";
-import { Link } from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
@@ -10,6 +9,10 @@ function Login() {
     username = username.replace(/['"]+/g, "");
     localStorage.setItem("username", JSON.stringify(username));
     navigate("/");
+  };
+
+  const goToSignIn = () => {
+    navigate("/signup");
   };
 
   return (
@@ -53,22 +56,18 @@ function Login() {
             <span style={{ marginTop: "5px", marginBottom: "5px" }}>or</span>
             <button
               type="button"
+              onClick={goToSignIn}
               style={{
                 backgroundColor: "#426c55",
                 borderColor: "#426c55",
+                marginTop: "10px",
                 width: "100px",
                 height: "40px",
+                fontSize: "20px",
+                color: "white",
               }}
             >
-              <Link
-                href="/login"
-                style={{
-                  fontSize: "20px",
-                  color: "white",
-                }}
-              >
-                Sign In
-              </Link>
+              Sign In
             </button>
           </form>
         </div>
