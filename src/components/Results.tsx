@@ -80,7 +80,8 @@ function Results() {
   ]);
   const [priceMax, setPriceMax] = React.useState(80);
   const [distanceMax, setDistanceMax] = React.useState(999);
-  let dateValid = false;
+  const [sortCriteria, setSortCriteria] = React.useState("");
+  let dateValid = (value[0]?.isValid && value[1]?.isValid) || false;
   const navigate = useNavigate();
 
   const getPriceTranslated = (price: string) => {
@@ -235,7 +236,7 @@ function Results() {
         return false;
       }
     });
-    setFilteredEvents(filtered);
+    handleSort(filtered);
   };
 
   const handleButtonClick = (eventId: number) => {
@@ -243,6 +244,7 @@ function Results() {
     let fromSearch = true;
     let selectedValue =
       selectedKeys.size > 0 ? [...selectedKeys].join(", ") : "";
+    let dateValidProps = dateValid ? true : false;
     const searchInput: SearchTypeForDetails = {
       stringSearch,
       citySearch,
@@ -250,7 +252,7 @@ function Results() {
       endDateSearch,
       selectedValue,
       fromSearch,
-      dateValid,
+      dateValidProps,
     };
     navigate("/event/" + eventId, { state: searchInput });
   };
@@ -275,9 +277,9 @@ function Results() {
     setLiked(newLiked);
   };
 
-  const setDates = () => {
-    const startDate = dayjs(value[0]);
-    const endDate = dayjs(value[1]);
+  const setDates = (newValue: DateRange<Dayjs>) => {
+    const startDate = dayjs(newValue[0]);
+    const endDate = dayjs(newValue[1]);
     setStartDateSearch(startDate.format("YYYY/MM/DD"));
     setEndDateSearch(endDate.format("YYYY/MM/DD"));
     //console.log(value);
@@ -379,8 +381,9 @@ function Results() {
     }
   };
 
-  const handleSort = (sortType: string) => {
+  const handleSort = (filteredEvents: eventProps[]) => {
     let sortedEvents = [...filteredEvents];
+    let sortType = sortCriteria;
     if (sortType == "Lower") {
       let freeEvents = [...filteredEvents].filter(
         (event) => event.price.toLowerCase() === "free"
@@ -496,10 +499,14 @@ function Results() {
                 start: "Start Date",
                 end: "End Date",
               }}
-              defaultValue={[value[0], value[1]]}
+              defaultValue={
+                dateValid
+                  ? [value[0], value[1]]
+                  : [dayjs("2022-04-17"), dayjs("2022-04-21")]
+              }
               onChange={(newValue) => {
                 setValue(newValue as DateRange<Dayjs>);
-                setDates();
+                setDates(newValue as DateRange<Dayjs>);
               }}
             />
           </DemoContainer>
@@ -685,18 +692,39 @@ function Results() {
               closeOnSelect={false}
               disallowEmptySelection={false}
             >
-              <DropdownItem key="Lower" onClick={() => handleSort("Lower")}>
+              <DropdownItem
+                key="Lower"
+                onClick={() => {
+                  setSortCriteria("Lower");
+                  filterEvents();
+                }}
+              >
                 Price(Lower)
               </DropdownItem>
-              <DropdownItem key="Higher" onClick={() => handleSort("Higher")}>
+              <DropdownItem
+                key="Higher"
+                onClick={() => {
+                  setSortCriteria("Higher");
+                  filterEvents();
+                }}
+              >
                 Price(Higher)
               </DropdownItem>
-              <DropdownItem key="Closest" onClick={() => handleSort("Closest")}>
+              <DropdownItem
+                key="Closest"
+                onClick={() => {
+                  setSortCriteria("Closest");
+                  filterEvents();
+                }}
+              >
                 Distance(closest)
               </DropdownItem>
               <DropdownItem
                 key="Farthest"
-                onClick={() => handleSort("Farthest")}
+                onClick={() => {
+                  setSortCriteria("Farthest");
+                  filterEvents();
+                }}
               >
                 Distance(farthest)
               </DropdownItem>

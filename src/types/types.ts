@@ -17,6 +17,6 @@ export class SearchTypeForDetails {
     public endDateSearch: string,
     public selectedValue: string,
     public fromSearch: boolean,
-    public dateValid: boolean
+    public dateValidProps: boolean
   ) {}
 }
