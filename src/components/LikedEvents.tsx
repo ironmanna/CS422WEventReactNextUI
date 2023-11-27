@@ -248,7 +248,7 @@ function LikedEvents() {
 
   return (
     <>
-      <h1 className="pl-1 pb-0.75 pt-10 text-3xl">Liked Events</h1>
+      <h1 className="pl-3 pb-1 pt-10 text-3xl">Liked Events</h1>
 
       <div id="Sort" className="absolute right-10 top-20">
         <Dropdown>

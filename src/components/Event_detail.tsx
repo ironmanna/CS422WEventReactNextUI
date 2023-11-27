@@ -258,12 +258,20 @@ function Event_details() {
                 />
               </Button>
             </div>
+            <div className="event-detail-card">
+            <p style={{fontWeight: 'bold'}}>Description:</p>
             <p>{eventSelected.description}</p>
+            <p style={{fontWeight: 'bold'}}>Date:</p>
             <p>{eventSelected.date}</p>
+            <p style={{fontWeight: 'bold'}}>Location:</p>
             <p>{eventSelected.location}</p>
-            <p>{eventSelected.distance}</p>
+            <p style={{fontWeight: 'bold'}}>Distance:</p>
+            <p>{eventSelected.distance} mi</p>
+            <p style={{fontWeight: 'bold'}}>Tags:</p>
             <p>{eventSelected.types.join(", ")}</p>
+            <p style={{fontWeight: 'bold'}}>Price:</p>
             <p>{eventSelected.price}</p>
+            </div>
           </div>
         </div>
       </main>

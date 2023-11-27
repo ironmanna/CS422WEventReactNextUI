@@ -24,15 +24,14 @@ function Login() {
               onChange={(event) => (username = event.target.value)}
             />
 
-            <br />
+            
             <label>Password:</label>
             <input type="password" />
+            
 
             <label>Confirm Password:</label>
-            <br />
+            
             <input type="password" />
-
-            <br />
 
             <button
               type="button"
@@ -40,7 +39,7 @@ function Login() {
               style={{
                 backgroundColor: "#426c55",
                 borderColor: "#426c55",
-                marginTop: "10px",
+                marginTop: "20px",
                 width: "100px",
                 height: "40px",
                 fontSize: "20px",
@@ -49,7 +48,6 @@ function Login() {
             >
               Sign Up
             </button>
-            <br />
             <span style={{ marginTop: "5px", marginBottom: "5px" }}>or</span>
             <button
               type="button"

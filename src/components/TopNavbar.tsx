@@ -41,10 +41,8 @@ function TopNavbar({ id }: TopNavbarProps) {
 
         <NavbarContent as="div" justify="end">
           <NavbarItem>
-            {username != "" ? `Hi ${username}!` : "Login here ->"}
-          </NavbarItem>
-          <NavbarItem>
-            <Link href={username !== "" ? "/logout" : "/login"}>
+            <Link style={{color: "#000000"}} href={username !== "" ? "/logout" : "/login"}>
+              {username != "" ? `Hi ${username}!` : "Login"}
               <ProfileLogo />
             </Link>
           </NavbarItem>
