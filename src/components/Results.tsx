@@ -557,8 +557,8 @@ function Results() {
           label="Max Distance (mi)"
           color="foreground"
           size="sm"
-          step={10}
-          maxValue={999}
+          step={5}
+          maxValue={100}
           minValue={0}
           defaultValue={0}
           className="max-w-md w-4/5 mx-auto mt-16"
