@@ -56,118 +56,11 @@ function LikedEvents() {
   const [liked, setLiked] = useState<boolean[]>(
     new Array(events.length).fill(false)
   );
+  const [sortCriteria, setSortCriteria] = React.useState("");
 
-  const filterEvents = () => {
-    let filtered = events.filter((event) => {
-      if (liked[event.id]) {
-        return true;
-      } else {
-        return false;
-      }
-    });
-    setFilteredEvents(filtered);
-  };
-
-  const handleButtonClick = (eventId: number) => {
-    let fromSearch = false;
-    if (eventId == 3) {
-      fromSearch = true;
-    }
-    navigate("/event/" + eventId, { state: fromSearch });
-  };
-
-  const handleLikeClick = (eventId: number) => {
-    const arrayOfLikes = JSON.parse(
-      localStorage.getItem("likedEvents") || "[]"
-    );
-
-    const newLiked = [...liked];
-    newLiked[eventId] = !newLiked[eventId];
-    if (newLiked[eventId]) {
-      arrayOfLikes.push(eventId);
-    } else {
-      const index = arrayOfLikes.indexOf(eventId);
-      if (index > -1) {
-        arrayOfLikes.splice(index, 1);
-      }
-    }
-
-    localStorage.setItem("likedEvents", JSON.stringify(arrayOfLikes));
-    setLiked(newLiked);
-  };
-
-  useEffect(() => {
-    const arrayOfLikes = JSON.parse(
-      localStorage.getItem("likedEvents") || "[]"
-    );
-    const newLiked = [...liked];
-    for (let i = 0; i < arrayOfLikes.length; i++) {
-      newLiked[arrayOfLikes[i]] = true;
-    }
-    setLiked(newLiked);
-  }, []);
-
-  useEffect(() => {
-    filterEvents();
-  }, [liked]);
-
-  const getNameImage = (index: number) => {
-    switch (index) {
-      case 1:
-        return Cupcake;
-      case 2:
-        return Fulton;
-      case 3:
-        return Beer;
-      case 4:
-        return Christmas;
-      case 5:
-        return Sushi;
-      case 6:
-        return Rock;
-      case 7:
-        return FoodArt;
-      case 8:
-        return Wonderland;
-      case 9:
-        return ChiMaraton;
-      case 10:
-        return Artshow;
-      case 11:
-        return Beachconcert;
-      case 12:
-        return Tacofestival;
-      case 13:
-        return Basketball;
-      case 14:
-        return Artsymiami;
-      case 15:
-        return Hollywoodparty;
-      case 16:
-        return Broadway;
-      case 17:
-        return Bbqfest;
-      case 18:
-        return Sportsshowdown;
-      case 19:
-        return Beachartfest;
-      case 20:
-        return Jazznight;
-      case 21:
-        return Nycmarathon;
-      case 22:
-        return Miamiseasonal;
-      case 23:
-        return Laseasonal;
-      case 24:
-        return Nyseasonal;
-      default:
-        return Cupcake;
-    }
-  };
-
-  const handleSort = (sortType: string) => {
+  const handleSort = (filteredEvents: eventProps[]) => {
     let sortedEvents = [...filteredEvents];
+    let sortType = sortCriteria;
     if (sortType == "Lower") {
       let freeEvents = [...filteredEvents].filter(
         (event) => event.price.toLowerCase() === "free"
@@ -242,18 +135,148 @@ function LikedEvents() {
       sortedEvents.sort((a, b) => a.distance - b.distance);
     } else if (sortType == "Farthest") {
       sortedEvents.sort((a, b) => b.distance - a.distance);
+    } else if (sortType == "Relevance") {
+      sortedEvents.sort((a, b) => a.id - b.id);
     }
     setFilteredEvents(sortedEvents);
   };
 
+  const filterEvents = () => {
+    let filtered = events.filter((event) => {
+      if (liked[event.id]) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    handleSort(filtered);
+  };
+
+  const handleButtonClick = (eventId: number) => {
+    let fromSearch = false;
+    if (eventId == 3) {
+      fromSearch = true;
+    }
+    navigate("/event/" + eventId, { state: fromSearch });
+  };
+
+  const handleLikeClick = (eventId: number) => {
+    const arrayOfLikes = JSON.parse(
+      localStorage.getItem("likedEvents") || "[]"
+    );
+
+    const newLiked = [...liked];
+    newLiked[eventId] = !newLiked[eventId];
+    if (newLiked[eventId]) {
+      arrayOfLikes.push(eventId);
+    } else {
+      const index = arrayOfLikes.indexOf(eventId);
+      if (index > -1) {
+        arrayOfLikes.splice(index, 1);
+      }
+    }
+
+    localStorage.setItem("likedEvents", JSON.stringify(arrayOfLikes));
+    setLiked(newLiked);
+  };
+
+  useEffect(() => {
+    const arrayOfLikes = JSON.parse(
+      localStorage.getItem("likedEvents") || "[]"
+    );
+    const newLiked = [...liked];
+    for (let i = 0; i < arrayOfLikes.length; i++) {
+      newLiked[arrayOfLikes[i]] = true;
+    }
+    setLiked(newLiked);
+  }, []);
+
+  useEffect(() => {
+    filterEvents();
+  }, [liked, sortCriteria]);
+
+  const getNameImage = (index: number) => {
+    switch (index) {
+      case 1:
+        return Cupcake;
+      case 2:
+        return Fulton;
+      case 3:
+        return Beer;
+      case 4:
+        return Christmas;
+      case 5:
+        return Sushi;
+      case 6:
+        return Rock;
+      case 7:
+        return FoodArt;
+      case 8:
+        return Wonderland;
+      case 9:
+        return ChiMaraton;
+      case 10:
+        return Artshow;
+      case 11:
+        return Beachconcert;
+      case 12:
+        return Tacofestival;
+      case 13:
+        return Basketball;
+      case 14:
+        return Artsymiami;
+      case 15:
+        return Hollywoodparty;
+      case 16:
+        return Broadway;
+      case 17:
+        return Bbqfest;
+      case 18:
+        return Sportsshowdown;
+      case 19:
+        return Beachartfest;
+      case 20:
+        return Jazznight;
+      case 21:
+        return Nycmarathon;
+      case 22:
+        return Miamiseasonal;
+      case 23:
+        return Laseasonal;
+      case 24:
+        return Nyseasonal;
+      default:
+        return Cupcake;
+    }
+  };
+
   return (
     <>
-      <h1 className="pl-3 pb-1 pt-10 text-3xl">Liked Events</h1>
+      <h1 className="pl-3 pb-5 pt-4 text-3xl">Liked Events</h1>
 
       <div id="Sort" className="absolute right-10 top-20">
         <Dropdown>
           <DropdownTrigger>
-            <Button>Sort</Button>
+            <Button
+              style={{
+                width: "auto",
+                backgroundColor: "#426c55",
+                borderColor: "#426c55",
+                color: "white",
+              }}
+            >
+              {sortCriteria === "Lower"
+                ? "Sort by Price(Lower)"
+                : sortCriteria === "Higher"
+                ? "Sort by Price(Higher)"
+                : sortCriteria === "Closest"
+                ? "Sort by Distance(Closest)"
+                : sortCriteria === "Farthest"
+                ? "Sort by Distance(Farthest)"
+                : sortCriteria === "Relevance"
+                ? "Sort by Relevance"
+                : "Sort by"}
+            </Button>
           </DropdownTrigger>
           <DropdownMenu
             aria-label="Multiple selection example"
@@ -261,16 +284,49 @@ function LikedEvents() {
             closeOnSelect={false}
             disallowEmptySelection={false}
           >
-            <DropdownItem key="Lower" onClick={() => handleSort("Lower")}>
+            <DropdownItem
+              key="Relevance"
+              onClick={() => {
+                setSortCriteria("Relevance");
+                filterEvents();
+              }}
+            >
+              Relevance
+            </DropdownItem>
+            <DropdownItem
+              key="Lower"
+              onClick={() => {
+                setSortCriteria("Lower");
+                filterEvents();
+              }}
+            >
               Price(Lower)
             </DropdownItem>
-            <DropdownItem key="Higher" onClick={() => handleSort("Higher")}>
+            <DropdownItem
+              key="Higher"
+              onClick={() => {
+                setSortCriteria("Higher");
+                filterEvents();
+              }}
+            >
               Price(Higher)
             </DropdownItem>
-            <DropdownItem key="Closest" onClick={() => handleSort("Closest")}>
+            <DropdownItem
+              key="Closest"
+              onClick={() => {
+                setSortCriteria("Closest");
+                filterEvents();
+              }}
+            >
               Distance(closest)
             </DropdownItem>
-            <DropdownItem key="Farthest" onClick={() => handleSort("Farthest")}>
+            <DropdownItem
+              key="Farthest"
+              onClick={() => {
+                setSortCriteria("Farthest");
+                filterEvents();
+              }}
+            >
               Distance(farthest)
             </DropdownItem>
           </DropdownMenu>

@@ -687,15 +687,22 @@ function Results() {
         <div id="Sort" className="absolute right-10">
           <Dropdown>
             <DropdownTrigger>
-              <Button style={{ width: "auto" }}>
+              <Button
+                style={{
+                  width: "auto",
+                  backgroundColor: "#426c55",
+                  borderColor: "#426c55",
+                  color: "white",
+                }}
+              >
                 {sortCriteria === "Lower"
                   ? "Sort by Price(Lower)"
                   : sortCriteria === "Higher"
                   ? "Sort by Price(Higher)"
                   : sortCriteria === "Closest"
-                  ? "Sort by Price(Closest)"
+                  ? "Sort by Distance(Closest)"
                   : sortCriteria === "Farthest"
-                  ? "Sort by Price(Farthest)"
+                  ? "Sort by Distance(Farthest)"
                   : sortCriteria === "Relevance"
                   ? "Sort by Relevance"
                   : "Sort by"}
