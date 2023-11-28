@@ -324,6 +324,7 @@ function Results() {
     selectedKeys,
     priceMax,
     distanceMax,
+    sortCriteria,
   ]);
 
   const getNameImage = (index: number) => {
@@ -458,6 +459,8 @@ function Results() {
       sortedEvents.sort((a, b) => a.distance - b.distance);
     } else if (sortType == "Farthest") {
       sortedEvents.sort((a, b) => b.distance - a.distance);
+    } else if (sortType == "Relevance") {
+      sortedEvents.sort((a, b) => a.id - b.id);
     }
     setFilteredEvents(sortedEvents);
   };
@@ -684,7 +687,19 @@ function Results() {
         <div id="Sort" className="absolute right-10">
           <Dropdown>
             <DropdownTrigger>
-              <Button>Sort</Button>
+              <Button style={{ width: "auto" }}>
+                {sortCriteria === "Lower"
+                  ? "Sort by Price(Lower)"
+                  : sortCriteria === "Higher"
+                  ? "Sort by Price(Higher)"
+                  : sortCriteria === "Closest"
+                  ? "Sort by Price(Closest)"
+                  : sortCriteria === "Farthest"
+                  ? "Sort by Price(Farthest)"
+                  : sortCriteria === "Relevance"
+                  ? "Sort by Relevance"
+                  : "Sort by"}
+              </Button>
             </DropdownTrigger>
             <DropdownMenu
               aria-label="Multiple selection example"
@@ -692,6 +707,15 @@ function Results() {
               closeOnSelect={false}
               disallowEmptySelection={false}
             >
+              <DropdownItem
+                key="Relevance"
+                onClick={() => {
+                  setSortCriteria("Relevance");
+                  filterEvents();
+                }}
+              >
+                Relevance
+              </DropdownItem>
               <DropdownItem
                 key="Lower"
                 onClick={() => {
