@@ -310,6 +310,18 @@ function LikedEvents() {
             </Button>
           </div>
         ))}
+        {filteredEvents.length == 0 && (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              color: "#575857",
+            }}
+          >
+            <p style={{ fontSize: "25px" }}>No Liked Events</p>
+          </div>
+        )}
       </div>
     </>
   );
